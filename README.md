@@ -39,7 +39,7 @@ return $api->response(["result" => true], "OK");
 
 The code above will convert the data to this <b>JSON format</b> and return in <b>HTTP 200 status</b> 
 
-```json
+```javascript
 {msg_code: "OK", msg: "Success", result: true}
 ```
 
