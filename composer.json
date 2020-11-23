@@ -16,5 +16,12 @@
         "psr-4": {
             "VVinners\\Vapi\\": "src/"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "VVinners\\Vapi\\VapiServiceProvider"
+            ]
+        }
     }
 }
