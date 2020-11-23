@@ -1,11 +1,20 @@
 {
     "name": "vvinners/vapi",
     "description": "An enhanced version return response of API JSON. Aim to standardize the return api data format.",
+    "type": "library",
     "authors": [
         {
             "name": "Mark Tan",
             "email": "marktan@vvinners.com"
         }
     ],
-    "require": {}
+    "require": {},
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "VVinners\\Vapi\\": "src/"
+        }
+    }
 }
