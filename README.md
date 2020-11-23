@@ -22,16 +22,61 @@ php artisan vendor:publish --provider="VVinners\Vapi\VapiServiceProvider" --tag=
 ```
 <br />
 Put this to config/app.php if the package is not auto discovered
+
 ```php
-VVinners\Vapi\VapiServiceProvider::class,
+VVinners\Vapi\VapiServiceProvider::class
 ```
 
 ## Demo
+
+
 ```php
 use VVinners\Vapi\Api;
 
 $api = new Api;
-return $api->response($data, $code);
+return $api->response(["result" => true], "OK");
+```
+
+The code above will convert the data to this <b>JSON format</b> and return in <b>HTTP 200 status</b> 
+
+```json
+{msg_code: "OK", msg: "Success", result: true}
+```
+
+the second parameter <b>"OK"</b> can be updated at the msgcode.php 
+below is an example data of the file
+
+```php
+<?php
+
+return [
+
+    // HTTP_INTERNAL_SERVER_ERROR
+    '500' => [
+        'ERROR' => 'Error encountered'
+    ],
+
+    // HTTP_OK
+    '200' => [
+        'OK' => 'Success'
+    ],
+
+    // HTTP_BAD_REQUEST
+    '400' => [
+        'INVALID_DATA_INPUT' => 'Invalid data pass to server'
+    ],
+
+    // HTTP_UNAUTHORIZED
+    '401' => [
+
+    ],
+
+    // HTTP_FORBIDDEN
+    '403' => [
+
+    ]
+
+];
 ```
 
 ## License
