@@ -6,7 +6,6 @@ use Exception;
 
 class Api
 {
-
     public function handleStatus($msgcode)
     {
         $allcode = config("msgcode");
@@ -26,11 +25,18 @@ class Api
     {
         $statusCode = $this->handleStatus($code);
 
-        $data["msg_code"] = $statusCode["msg_code"];
-        if (!isset($data["msg"])) { // let msg to be overwrite if exist
-            $data["msg"] = $statusCode["msg"];
+        $newData = [];
+        
+        $newData["msg_code"] = $statusCode["msg_code"];
+        $newData["msg"] = $statusCode["msg"];
+        if (is_array($data)) {
+            if (isset($data["msg"])) { // let msg to be overwrite if exist
+                $newData["msg"] = $data["msg"];
+            }
+        } else if (trim($data) != "" && !is_null($data)) {
+            $newData["msg"] = $data;
         }
 
-        return response()->json($data, $statusCode["status_code"]);
+        return response()->json($newData, $statusCode["status_code"]);
     }
 }
