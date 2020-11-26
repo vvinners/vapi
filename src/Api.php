@@ -26,13 +26,17 @@ class Api
         $statusCode = $this->handleStatus($code);
 
         $newData = [];
+
+        if (is_array($data)) {
+            $newData = $data;
+        }
         
         $newData["msg_code"] = $statusCode["msg_code"];
         $newData["msg"] = $statusCode["msg"];
         if (is_array($data)) {
             if (isset($data["msg"])) { // let msg to be overwrite if exist
                 $newData["msg"] = $data["msg"];
-            }
+            } 
         } else if (trim($data) != "" && !is_null($data)) {
             $newData["msg"] = $data;
         }
