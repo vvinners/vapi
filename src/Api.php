@@ -22,7 +22,7 @@ class Api
         throw new Exception("Message code not found");
     }
 
-    public function response($data = [], $code = "OK")
+    public function response($data = [], $code = "OK", $headers = [])
     {
         $config = config("msgcode");
         $statusCode = $this->handleStatus($code);
@@ -42,6 +42,6 @@ class Api
             $newData[$config['msg_name']] = $data;
         }
 
-        return response()->json($newData, $statusCode["status_code"]);
+        return response()->json($newData, $statusCode["status_code"], $headers);
     }
 }
